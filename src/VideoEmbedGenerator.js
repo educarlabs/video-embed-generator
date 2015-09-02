@@ -24,25 +24,30 @@
    */
   function init(options) {
 
-    // Aplicamos defaults para las opciones no definidas
-    for (var prop in defaults) {
-      if (prop in options) { continue; }
-      options[prop] = defaults[prop];
+    // Mergeo el objeto de configuración con los defaults o devuelvo error si se pasó un parámetro de tipo incorrecto.
+    if (options !== null && typeof options === 'object') {
+      for (var prop in defaults) {
+        if (prop in options) { continue; }
+        options[prop] = defaults[prop];
+      }
+    } else if (undefined === options) {
+      options = defaults;
+    } else {
+      console.warn("Parámetros para VideoEmbedGenerator.init() inválidos.");
+      return;
     }
 
     form = document.querySelector(options.formSelector);
 
     if (null === form) {
-      console.warn("No se encontró un elemento que coincida con el selector '" + options.formSelector + "' \
-                    para inicializar el generador de códigos de embebido.");
+      console.warn("No se encontró un elemento que coincida con el selector '" + options.formSelector + "' para inicializar el generador de códigos de embebido.");
       return;
     }
 
     target = document.querySelector(options.targetSelector);
 
     if (null === target) {
-      console.warn("No se encontró un elemento que coincida con el selector '" + options.targetSelector + "' \
-                    para inicializar el generador de códigos de embebido.");
+      console.warn("No se encontró un elemento que coincida con el selector '" + options.targetSelector + "' para inicializar el generador de códigos de embebido.");
       return;
     }
 
