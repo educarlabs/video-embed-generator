@@ -11,6 +11,8 @@
       form,
       target,
       widthHeightRegex = /w(\d+)h(\d+)/,
+      checkFields      = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
+                          'autostart', 'start', 'stop', 'info', 'controls', 'skin'],
 
       // Opciones de configuración por defecto
       defaults = {
@@ -51,9 +53,33 @@
       return;
     }
 
+    if (!hasAllFields(form)) { return; }
+
     target.value = getEmbedCode();
 
     form.addEventListener("change", refreshCode);
+  }
+
+
+  /**
+   * Indica si el formulario tiene los campos requeridos
+   *
+   * @return {bool}
+   */
+  function hasAllFields(form) {
+    var missing     = [];
+
+    for (var i = checkFields.length - 1; i >= 0; i--){
+      if (undefined === form.elements[checkFields[i]]) {
+        missing.push(checkFields[i]);
+      }
+    }
+
+    if (missing.length !== 0) {
+      console.warn("No se puede inicializar VideoEmbedGenerator porque faltan estos campos en el formulario: " + missing.join(', '));
+    }
+
+    return (missing.length === 0);
   }
 
 
