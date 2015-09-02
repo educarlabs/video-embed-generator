@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>VideoEmbedGenerator.js demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,700' rel='stylesheet' type='text/css'>
+        <style>
+          body {
+            font: normal 16px/1.5 'Roboto', sans-serif;
+            border-top: 5px solid #0FB599;
+          }
+
+          .main-title {
+            font-size: 3em;
+            margin-top: 1em;
+            color: #0FB599;
+          }
+
+          .container-fluid {
+            max-width: 54em;
+            margin-bottom: 5em;
+          }
+
+          #myform {
+              margin-top: 3em;
+              background-color: #E1F3F0;
+          }
+
+          .form-title {
+              margin-bottom: 1em;
+              font-weight: bold;
+          }
+
+          #generator-target {
+            font-size: 1.5em;
+            line-height: 1.5;
+            color: #1BA78F;
+            margin-top: 1em;
+            resize: none;
+            word-break: break-word;
+            word-wrap: break-word;
+            white-space: pre;
+          }
+
+          #hiddeninputs {
+            display: none;
+            background-color: #D8D8D8;
+            padding: 0.75em;
+            margin: -10px -0.75em 2em;
+            border-radius: 5px;
+            box-shadow: 0 -2px 10px -2px gray inset;
+          }
+
+          .helptext {
+            font-size: 0.9em;
+          }
+
+          .helptext .glyphicon {
+              color: gray;
+              top: 2px;
+          }
+
+          code {
+              color: #0FB599;
+              background-color: #E1F3F0;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1 class="main-title">VideoEmbedGenerator.js demo</h1>
+
+            <form id="myform" class="well">
+
+                <h4 class="form-title">Configuración del embebido</h4>
+
+                <div class="form-group">
+                  <p class="checkbox">
+                    <label for="verhidden">
+                      <input type="checkbox" id="verhidden" name="verhidden">Ver controles con <code>type="hidden"</code>
+                    </label>
+                  </p>
+                </div>
+
+                <fieldset id="hiddeninputs">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="form-group">
+                        <label for="dimensiones">URL base</label>
+                        <input class="form-control" type="text" name="baseurl" value="http://cdn.educ.ar/embed/">
+                      </p>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="width">ID del recurso</label>
+                        <input class="form-control" type="text" name="rec_id" value="12345">
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-group">
+                        <label for="height">Referente</label>
+                        <select class="form-control" name="referente" id="referente">
+                          <option value="educar" selected>Educ.ar</option>
+                          <option value="encuentro">Encuentro</option>
+                          <option value="pakapaka">Pakapaka</option>
+                          <option value="conectate">Conectate</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="helptext"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Estos campos se deben implementar como <code>&lt;input type="hidden"&gt;</code> con sus valores fijos definidos por el sitio.</p>
+                </fieldset>
+
+                <div class="form-group">
+                  <p class="checkbox">
+                    <label for="info">
+                      <input type="checkbox" id="info" name="info" checked>
+                      Mostrar título y descripción del video
+                    </label>
+                  </p>
+                </div>
+
+                <div class="form-group">
+                  <p class="checkbox">
+                    <label for="controls">
+                      <input type="checkbox" id="controls" name="controls" checked>
+                      Mostrar controles del reproductor
+                    </label>
+                  </p>
+                </div>
+
+                <div class="form-group">
+                  <p class="checkbox">
+                    <label for="cc">
+                      <input type="checkbox" id="cc" name="cc">
+                      Mostrar subtítulos por defecto
+                    </label>
+                  </p>
+                </div>
+
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <p class="checkbox">
+                            <label for="autostart">
+                              <input type="checkbox" id="autostart" name="autostart">
+                              Iniciar automáticamente
+                            </label>
+                          </p>
+                        </div>
+                        <div class="form-group">
+                          <span for="start">a los</span>
+                          <input class="form-control input-sm" type="text" value="" name="start" id="start" size="1" readonly> segundos
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="form-inline">
+                        <div class="form-group">
+                          <p class="checkbox">
+                            <label for="autostop">
+                              <input type="checkbox" id="autostop" name="autostop">
+                              Detener automáticamente
+                            </label>
+                          </p>
+                        </div>
+                        <div class="form-group">
+                          <span for="stop">a los</span>
+                          <input class="form-control input-sm" type="text" value="" name="stop" id="stop" size="1" readonly> segundos
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="form-group">
+                      <label for="dimensiones">Dimensiones</label>
+                      <select class="form-control" name="dimensiones" id="dimensiones">
+                        <option value="w320h180" selected>320 x 180</option>
+                        <option value="w480h270">480 x 270</option>
+                        <option value="custom">Personalizado</option>
+                        <option value="none">No definidas (adaptativo)</option>
+                      </select>
+                    </p>
+                  </div>
+                  <div class="col-sm-2 col-xs-6">
+                    <div class="form-group">
+                      <label for="width">Ancho</label>
+                      <input class="form-control" type="text" value="320" name="width" id="width" size="3" readonly>
+                    </div>
+                  </div>
+                  <div class="col-sm-2 col-xs-6">
+                    <div class="form-group">
+                      <label for="height">Alto</label>
+                      <input class="form-control" type="text" value="180" name="height" id="height" size="3" readonly>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-4">
+                    <p class="form-group">
+                      <label for="skin">Diseño</label>
+                      <select class="form-control" name="skin" id="skin">
+                        <option value="seven" selected>Seven</option>
+                        <option value="six">Six</option>
+                        <option value="five">Five</option>
+                        <option value="bekle">Bekle</option>
+                        <option value="roundster">Roundster</option>
+                        <option value="vapor">Vapor</option>
+                        <option value="stormtrooper">Stormtrooper</option>
+                        <option value="glow">Glow</option>
+                      </select>
+                    </p>
+                  </div>
+                </div>
+
+                <p class="form-group">
+                  <textarea class="form-control" id="generator-target" name="embeddercode" readonly rows="5"></textarea>
+                </p>
+              </form>
+              <p class="helptext"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Si no se quiere ofrecer al usuario alguna de estas opciones de debe implementar ese campo como un <code>&lt;input type="hidden"&gt;</code> con el valor fijo que se quiera.</p>
+        </div>
+        <script type="text/javascript" src="../src/VideoEmbedGenerator.js"></script>
+        <script type="text/javascript">
+          VideoEmbedGenerator.init({
+            formSelector  : "#myform",
+            targetSelector: "#generator-target"
+          });
+
+          var toggle   = document.getElementById("verhidden"),
+              fieldset = document.getElementById("hiddeninputs");
+
+          toggle.addEventListener("change", function(ev){
+            fieldset.style.display = ev.target.checked ? 'block' : 'none';
+          });
+        </script>
+    </body>
+</html>
