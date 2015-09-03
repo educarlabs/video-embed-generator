@@ -24,6 +24,17 @@ VideoEmbedGenerator.init({
 4) Listo.
 
 
+:bulb: **Seguramente tu sitio no necesite tener esta funcionalidad disponible todo el tiempo**. En ese caso sería una buena idea descargar e inicializar este script de forma asincrónica sólo cuando el usuario lo requiera, optimizando de esta forma el tiempo de carga inicial de la página. Podés aprovechar una función como  [loadJS()](https://github.com/filamentgroup/loadJS) para hacer esto.
+
+```javascript
+// Correr esto cuando el usuario pide embeber el video:
+
+loadJS("path/to/scripts/VideoEmbedGenerator.js", function(){
+    VideoEmbedGenerator.init();
+});
+```
+
+
 ## Dependencias
 
 Ninguna :)
@@ -201,4 +212,3 @@ VideoEmbedGenerator.init({
     targetSelector: "#embeddercode"
 });
 ```
-
