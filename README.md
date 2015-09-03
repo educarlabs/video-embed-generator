@@ -1,38 +1,40 @@
-# Generador de códigos de embebido
+Generador de códigos de embebido
+================================
 
 Funcionalidad client-side para generar de forma interactiva códigos de video embebido compatibles con el servicio de la CDN de educ.ar.
 
+---
 
 ## Cómo se usa
 
-1) Copiar el archivo `VideoEmbedGenerator.js` en tu proyecto e incluirlo en la vista.
+1.  Copiar el archivo `VideoEmbedGenerator.js` en tu proyecto e incluirlo en la vista.
 
-```html
-<script type="text/javascript" src="../src/VideoEmbedGenerator.js"></script>
-```
+    ```html
+    <script type="text/javascript" src="../src/VideoEmbedGenerator.js"></script>
+    ```
 
-2) Agregar en la vista el marcado HTML necesario.
+2. Agregar en la vista el marcado HTML necesario.
 
-3) Luego de cargado el DOM, llamar al método `init()`, opcionalmente pasando un objeto de configuración:
+3. Luego de cargado el DOM, llamar al método `init()`, opcionalmente pasando un objeto de configuración:
 
-```javascript
-VideoEmbedGenerator.init({
-    // opciones...
-});
-```
+    ```javascript
+    VideoEmbedGenerator.init({
+        // opciones...
+    });
+    ```
 
-4) Listo.
+4. Listo.
 
 
-:bulb: **Seguramente tu sitio no necesite tener esta funcionalidad disponible todo el tiempo**. En ese caso sería una buena idea descargar e inicializar este script de forma asincrónica sólo cuando el usuario lo requiera, optimizando de esta forma el tiempo de carga inicial de la página. Podés aprovechar una función como  [loadJS()](https://github.com/filamentgroup/loadJS) para hacer esto.
+> :bulb: **Seguramente tu sitio no necesite tener esta funcionalidad disponible todo el tiempo**. En ese caso sería una buena idea descargar e inicializar este script de forma asincrónica sólo cuando el usuario lo requiera, optimizando de esta forma el tiempo de carga inicial de la página. Podés aprovechar una función como  [loadJS()](https://github.com/filamentgroup/loadJS) para hacer esto.
 
-```javascript
-// Correr esto cuando el usuario pide embeber el video:
+> ```javascript
+> // Correr esto cuando el usuario pide embeber el video:
 
-loadJS("path/to/scripts/VideoEmbedGenerator.js", function(){
-    VideoEmbedGenerator.init();
-});
-```
+> loadJS("path/to/scripts/VideoEmbedGenerator.js", function(){
+>     VideoEmbedGenerator.init();
+> });
+> ```
 
 
 ## Dependencias
