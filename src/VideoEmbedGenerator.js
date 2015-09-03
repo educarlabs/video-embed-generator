@@ -10,6 +10,7 @@
       code,
       form,
       target,
+      initialized = false,
       widthHeightRegex = /w(\d+)h(\d+)/,
       checkFields      = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
                           'autostart', 'start', 'stop', 'info', 'controls', 'skin'],
@@ -58,6 +59,8 @@
     target.value = getEmbedCode();
 
     form.addEventListener("change", refreshCode);
+
+    initialized = true;
   }
 
 
@@ -87,8 +90,11 @@
    * Destruye la instancia del generador.
    */
   function kill() {
+    if (!initialized) {return;}
     form.removeEventListener("change", refreshCode);
+    target.value = "";
     form = target = url = code = null;
+    initialized = false;
   }
 
 

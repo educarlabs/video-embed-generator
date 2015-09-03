@@ -25,8 +25,9 @@ describe("Al intentar destruir el generador de códigos de embebido", function()
     });
 
 
-    it("no se debe hacer nada si el generador no está inicializado", function() {
-
+    it("no se debe hacer nada si el generador no estaba inicializado", function() {
+        expect(VideoEmbedGenerator.kill).not.toThrow();
+        expect($textarea).toHaveValue('');
     });
 
 });
