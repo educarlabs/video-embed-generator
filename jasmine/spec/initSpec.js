@@ -3,7 +3,8 @@
  */
 describe("Al intentar inicializar el generador de códigos de embebido", function() {
 
-    var $textarea,
+    var $form,
+        $textarea,
         defaultEmbedCode = '<iframe frameborder="0"  allowfullscreen src="http://cdn.educ.ar/embed/?id=12345" width="320" height="180"></iframe>';
 
 
@@ -55,16 +56,6 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
             formSelector  : '#my-generator',
             targetSelector: '[name="my-embeddercode"]'
         });
-
-        expect($textarea).toHaveValue('');
-
-    });
-
-
-    it("Se destruye correctamente, limpiando el textarea.", function() {
-
-        VideoEmbedGenerator.init();
-        VideoEmbedGenerator.kill();
 
         expect($textarea).toHaveValue('');
 

@@ -164,16 +164,27 @@
   function getUrl() {
     url  = form.elements.baseurl.value;
     url += "?id=" + form.elements.rec_id.value;
-    url +=  form.elements.cc.checked                  ? "&cc=1"                                       : "";
-    url += !form.elements.info.checked                ? "&info=0"                                     : "";
-    url += !form.elements.controls.checked            ? "&controls=0"                                 : "";
-    url +=  form.elements.autostart.checked           ? "&autostart=1"                                : "";
+    url +=  getFieldState(form.elements.cc)           ? "&cc=1"                                       : "";
+    url += !getFieldState(form.elements.info)         ? "&info=0"                                     : "";
+    url += !getFieldState(form.elements.controls)     ? "&controls=0"                                 : "";
+    url +=  getFieldState(form.elements.autostart)    ? "&autostart=1"                                : "";
     url +=  form.elements.start.value                 ? "&start="     + form.elements.start.value     : "";
     url +=  form.elements.stop.value                  ? "&stop="      + form.elements.stop.value      : "";
     url +=  form.elements.skin.value      != "seven"  ? "&skin="      + form.elements.skin.value      : "";
     url +=  form.elements.referente.value != "educar" ? "&referente=" + form.elements.referente.value : "";
 
     return url;
+  }
+
+
+  /**
+   * Devuelve el estado booleano de un control sea checkbox o hidden input
+   *
+   * @return {bool}
+   */
+  function getFieldState(element) {
+    return (element.type === "checkbox" && element.checked) ||
+           (element.type === "hidden"   && element.value == 1);
   }
 
 
