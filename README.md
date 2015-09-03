@@ -1,27 +1,42 @@
-# Generador de códigos de embebido
+Generador de códigos de embebido
+================================
 
 Funcionalidad client-side para generar de forma interactiva códigos de video embebido compatibles con el servicio de la CDN de educ.ar.
 
+#### [Ver demo](http://nrlp.educ.ar/video-embed-generator/demo/)
+
+---
 
 ## Cómo se usa
 
-1) Copiar el archivo `VideoEmbedGenerator.js` en tu proyecto e incluirlo en la vista.
+1.  Copiar el archivo `VideoEmbedGenerator.js` en tu proyecto e incluirlo en la vista.
 
-```html
-<script type="text/javascript" src="../src/VideoEmbedGenerator.js"></script>
-```
+    ```html
+    <script type="text/javascript" src="../src/VideoEmbedGenerator.js"></script>
+    ```
 
-2) Agregar en la vista el marcado HTML necesario.
+2. Agregar en la vista el marcado HTML necesario (ver más abajo).
 
-3) Luego de cargado el DOM, llamar al método `init()`, opcionalmente pasando un objeto de configuración:
+3. Luego de cargado el DOM, llamar al método `init()` del objeto, opcionalmente pasando un objeto de configuración:
 
-```javascript
-VideoEmbedGenerator.init({
-    // opciones...
-});
-```
+    ```javascript
+    VideoEmbedGenerator.init({
+        // configuración opcional...
+    });
+    ```
 
-4) Listo.
+4. Listo.
+
+
+> :bulb: **Seguramente tu sitio no necesite tener esta funcionalidad disponible todo el tiempo**. En ese caso sería una buena idea descargar e inicializar este script de forma asincrónica sólo cuando el usuario lo requiera, optimizando de esta forma el tiempo de carga inicial de la página. Podés aprovechar una función como  [loadJS()](https://github.com/filamentgroup/loadJS) para hacer esto.
+
+> ```javascript
+> // Correr esto cuando el usuario pide embeber el video:
+
+> loadJS("path/to/scripts/VideoEmbedGenerator.js", function(){
+>     VideoEmbedGenerator.init();
+> });
+> ```
 
 
 ## Dependencias
@@ -100,12 +115,12 @@ Para el caso del campo `referente`, debe tener como valor una de las cadenas sop
 
 #### Campos `info` y `controls`
 
-Son checkboxes que deben tener el atributo `checked` por defecto. Si no se quiere ofrecer estas opciones al usuario se deben reemplazar por campos de tipo `input type="hidden"` con el valor aproppiado.
+Son checkboxes que pueden o no tener el atributo `checked` por defecto. Si no se quiere ofrecer estas opciones al usuario se deben reemplazar por campos de tipo `input type="hidden"` con el valor aproppiado.
 
 
 #### Campos `cc`, `autostart` y `autostop`
 
-Son checkboxes no que deben tener el atributo `checked` por defecto. Si no se quiere ofrecer estas opciones al usuario se deben reemplazar por campos de tipo `input type="hidden"` con el valor apropiado.
+Son checkboxes que no deben tener el atributo `checked` por defecto. Si no se quiere ofrecer estas opciones al usuario se deben reemplazar por campos de tipo `input type="hidden"` con el valor apropiado.
 
 
 #### Campos `start` y `stop`
@@ -162,7 +177,7 @@ Son campos de texto. Si no se quiere ofrecer la opción de dimensiones personali
 
 Es un combo con las distintas opciones de skin que se quiera ofrecer. Para mostrar una de las opciones marcada por defecto agregar el atributo `selected` a la opción.
 
-Cada etiqueta `<option>` debe tener como valor una de las cadenas soportadas como alias de skin por la CDN.
+Cada etiqueta `<option>` debe tener como valor una de las cadenas soportadas como alias de skin por la [CDN de educ.ar](https://gitlab.educ.ar/repositorio/cdn).
 
 Si no se quiere ofrecer esta opción al usuario se deben reemplazar el combo por un campos de tipo `input type="hidden"` con el valor apropiado.
 
@@ -170,7 +185,9 @@ Si no se quiere ofrecer esta opción al usuario se deben reemplazar el combo por
 
 ## Objeto de configuración
 
-La forma más simple de hacer funcionar todo esto es aplicarle al formulario del generador el atributo `data-videoembedgenerator` y al elemenento que muestra el código el atributo `data-videoembedgenerator-target`. Por ejemplo: 
+La forma más simple de hacer funcionar todo esto es aplicarle al formulario del generador el atributo `data-videoembedgenerator` y al elemenento que muestra el código el atributo `data-videoembedgenerator-target`.
+
+Ejemplo: 
 
 ```html
 <form data-videoembedgenerator>
@@ -181,15 +198,16 @@ La forma más simple de hacer funcionar todo esto es aplicarle al formulario del
 </form>
 ```
 
-Pero también es posible utilizar otro marcado y seleccionar ambos elementos a través de selectores CSS válidos. Por ejemplo, si nuestro marcado fuera algo así:
+Pero si queremos usar nuestro propio marcado lo podemos hacer, en cuyo caso vamos a necesitar seleccionar ambos elementos a través de selectores CSS válidos.
 
+Por ejemplo, si nuestro marcado fuera algo así:
 
 ```html
 <form id="my-generator">
 
     <!-- controles del formulario... -->
 
-    <textarea id="embeddercode" name="embeddercode" readonly rows="5"></textarea>
+    <textarea name="embeddercode" readonly rows="5"></textarea>
 </form>
 ```
 
@@ -197,8 +215,7 @@ Podríamos inicializar el generador aprovechando las propiedades `formSelector` 
 
 ```javascript
 VideoEmbedGenerator.init({
-    formSelector  : "#my-generator",
-    targetSelector: "#embeddercode"
+    formSelector  : '#my-generator',
+    targetSelector: '[name="embeddercode"]'
 });
 ```
-
