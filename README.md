@@ -92,8 +92,8 @@ Se sugiere que en su estado original todos los campos tengan el atributo `disabl
     <!-- etc... -->
   </select>
 
-  <label for="embeddercode" disabled>Código</label>
-  <textarea data-videoembedgenerator-target name="embeddercode" readonly></textarea>
+  <label for="embeddercode">Código</label>
+  <textarea data-videoembedgenerator-target name="embeddercode" readonly disabled></textarea>
 </form>
 ```
 
