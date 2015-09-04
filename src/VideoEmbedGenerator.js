@@ -12,7 +12,7 @@
       target,
       initialized = false,
       widthHeightRegex = /w(\d+)h(\d+)/,
-      checkFields      = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
+      requiredFields   = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
                           'autostart', 'start', 'stop', 'info', 'controls', 'skin'],
 
       // Opciones de configuración por defecto
@@ -54,12 +54,13 @@
       return;
     }
 
-    if (!hasAllFields(form)) { return; }
+    if (!hasAllRequiredFields(form)) { return; }
 
     target.value = getEmbedCode();
 
     form.addEventListener("change", refreshCode);
 
+    setAllControlsState(form, true);
     initialized = true;
   }
 
@@ -69,12 +70,12 @@
    *
    * @return {bool}
    */
-  function hasAllFields(form) {
+  function hasAllRequiredFields(form) {
     var missing     = [];
 
-    for (var i = checkFields.length - 1; i >= 0; i--){
-      if (undefined === form.elements[checkFields[i]]) {
-        missing.push(checkFields[i]);
+    for (var i = requiredFields.length - 1; i >= 0; i--){
+      if (undefined === form.elements[requiredFields[i]]) {
+        missing.push(requiredFields[i]);
       }
     }
 
@@ -87,12 +88,26 @@
 
 
   /**
+   * Activa o desactiva todos los controles de un formulario
+   *
+   * @param {Element} form - Formulario al que se quiere activar o desactivar sus controles
+   * @param {bool} state - true para activar los controles, false para desactivarlos
+   */
+  function setAllControlsState(form, state) {
+    for (var i = form.elements.length - 1; i >= 0; i--){
+      form.elements[i].disabled = !state;
+    }
+  }
+
+
+  /**
    * Destruye la instancia del generador.
    */
   function kill() {
     if (!initialized) {return;}
     form.removeEventListener("change", refreshCode);
     target.value = "";
+    setAllControlsState(form, false);
     form = target = url = code = null;
     initialized = false;
   }
@@ -180,6 +195,7 @@
   /**
    * Devuelve el estado booleano de un control sea checkbox o hidden input
    *
+   * @param {Element} element - Control de formulario
    * @return {bool}
    */
   function getFieldState(element) {

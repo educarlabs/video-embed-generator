@@ -3,26 +3,26 @@
 -->
 
 <form data-videoembedgenerator>
-  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/embed/">
-  <input type="hidden" name="rec_id"    value="12345">
-  <input type="hidden" name="referente" value="educar">
+  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/embed/" disabled>
+  <input type="hidden" name="rec_id"    value="12345" disabled>
+  <input type="hidden" name="referente" value="educar" disabled>
 
-  <label for="info"><input type="checkbox" name="info" checked>Mostrar título y descripción del video</label>
+  <label for="info"><input type="checkbox" name="info" checked disabled>Mostrar título y descripción del video</label>
 
-  <label for="controls"><input type="checkbox" name="controls" checked>Mostrar controles del reproductor</label>
+  <label for="controls"><input type="checkbox" name="controls" checked disabled>Mostrar controles del reproductor</label>
 
-  <label for="cc"><input type="checkbox" name="cc">Mostrar subtítulos por defecto</label>
+  <label for="cc"><input type="checkbox" name="cc" disabled>Mostrar subtítulos por defecto</label>
 
-  <label for="autostart"><input type="checkbox" name="autostart">Iniciar automáticamente</label>
+  <label for="autostart"><input type="checkbox" name="autostart" disabled>Iniciar automáticamente</label>
   <label for="start">a los</label>
-  <input type="text" value="" name="start" readonly> segundos
+  <input type="text" value="" name="start" readonly disabled> segundos
 
-  <label for="autostop"><input type="checkbox"name="autostop">Detener automáticamente</label>
+  <label for="autostop"><input type="checkbox"name="autostop" disabled>Detener automáticamente</label>
   <label for="stop">a los</label>
-  <input type="text" value="" name="stop" readonly> segundos
+  <input type="text" value="" name="stop" readonly disabled> segundos
 
   <label for="dimensiones">Dimensiones</label>
-  <select class="form-control" name="dimensiones">
+  <select class="form-control" name="dimensiones" disabled>
     <option value="w320h180" selected>320 x 180</option>
     <option value="w480h270">480 x 270</option>
     <option value="w640h480">640 x 480</option>
@@ -31,13 +31,13 @@
   </select>
 
   <label for="width">Ancho</label>
-  <input type="text" value="320" name="width" readonly>
+  <input type="text" value="320" name="width" readonly disabled>
 
   <label for="height">Alto</label>
-  <input type="text" value="180" name="height"readonly>
+  <input type="text" value="180" name="height"readonly disabled>
 
   <label for="skin">Diseño</label>
-  <select name="skin">
+  <select name="skin" disabled>
     <option value="seven" selected>Seven</option>
     <option value="six">Six</option>
     <option value="five">Five</option>
@@ -49,5 +49,5 @@
     <option value="glow">Glow</option>
   </select>
 
-  <textarea data-videoembedgenerator-target name="embeddercode" readonly></textarea>
+  <textarea data-videoembedgenerator-target name="embeddercode" readonly disabled></textarea>
 </form>

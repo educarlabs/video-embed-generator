@@ -19,9 +19,11 @@ describe("Al intentar destruir el generador de códigos de embebido", function()
 
         VideoEmbedGenerator.init();
         expect($textarea).not.toHaveValue('');
+        expect($textarea).not.toBeDisabled();
 
         VideoEmbedGenerator.kill();
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
 
     });
 
@@ -29,6 +31,27 @@ describe("Al intentar destruir el generador de códigos de embebido", function()
     it("no se debe hacer nada si el generador no estaba inicializado", function() {
         expect(VideoEmbedGenerator.kill).not.toThrow();
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
+    });
+
+
+    it("se deben desactivar todos los campos que estaban activados", function() {
+
+        var fields = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
+                      'autostart', 'autostop', 'start', 'stop', 'info', 'controls', 'skin'];
+
+        VideoEmbedGenerator.init();
+
+        $.each(fields, function(index, value){
+            expect($('[name="' + value + '"]')).not.toBeDisabled();
+        });
+
+        VideoEmbedGenerator.kill();
+
+        $.each(fields, function(index, value){
+            expect($('[name="' + value + '"]')).toBeDisabled();
+        });
+
     });
 
 });

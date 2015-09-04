@@ -46,30 +46,33 @@ Ninguna :)
 
 ## Marcado HTML necesario
 
-El marcado necesario es un formulario HTML estándar como el del siguiente ejemplo. Tener en cuenta que el marcado puede modificarse pero **todos los campos deben estar presentes**, sea de forma visible u oculta. 
+El marcado necesario es un formulario HTML estándar como el del siguiente ejemplo. Tener en cuenta que el marcado puede modificarse pero **todos los campos deben estar presentes**, sea de forma visible u oculta.
+
+Se sugiere que en su estado original todos los campos tengan el atributo `disabled`.
+
 
 ```html
 <form data-videoembedgenerator>
 
   <!-- Campos ocultos con datos no editables por el usuario -->
-  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/embed/">
-  <input type="hidden" name="rec_id"    value="12345">
-  <input type="hidden" name="referente" value="educar">
+  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/embed/" disabled>
+  <input type="hidden" name="rec_id"    value="12345" disabled>
+  <input type="hidden" name="referente" value="educar" disabled>
 
-  <label for="info"><input type="checkbox" id="info" name="info" checked>Mostrar título y descripción del video</label>
+  <label for="info"><input type="checkbox" id="info" name="info" checked disabled>Mostrar título y descripción del video</label>
 
-  <label for="controls"><input type="checkbox" id="controls" name="controls" checked>Mostrar controles del reproductor</label>
+  <label for="controls"><input type="checkbox" id="controls" name="controls" checked disabled>Mostrar controles del reproductor</label>
 
-  <label for="cc"><input type="checkbox" id="cc" name="cc">Mostrar subtítulos por defecto</label>
+  <label for="cc"><input type="checkbox" id="cc" name="cc" disabled>Mostrar subtítulos por defecto</label>
 
-  <label for="autostart"><input type="checkbox" id="autostart" name="autostart">Iniciar automáticamente</label>
-  a los <input type="text" value="" name="start" id="start" readonly> segundos.
+  <label for="autostart"><input type="checkbox" id="autostart" name="autostart" disabled>Iniciar automáticamente</label>
+  a los <input type="text" value="" name="start" id="start" readonly disabled> segundos.
 
-  <label for="autostop"><input type="checkbox" id="autostop" name="autostop">Detener automáticamente</label>
-  a los <input type="text" value="" name="stop" id="stop" readonly> segundos.
-        
+  <label for="autostop"><input type="checkbox" id="autostop" name="autostop" disabled>Detener automáticamente</label>
+  a los <input type="text" value="" name="stop" id="stop" readonly disabled> segundos.
+
   <label for="dimensiones">Dimensiones</label>
-  <select name="dimensiones" id="dimensiones">
+  <select name="dimensiones" id="dimensiones" disabled>
     <option value="w320h180" selected>320 x 180</option>
     <option value="w480h270">480 x 270</option>
     <option value="custom">Personalizado</option>
@@ -77,19 +80,19 @@ El marcado necesario es un formulario HTML estándar como el del siguiente ejemp
   </select>
 
   <label for="width">Ancho</label>
-  <input type="text" value="320" name="width" id="width" readonly>
+  <input type="text" value="320" name="width" id="width" readonly disabled>
 
   <label for="height">Alto</label>
-  <input type="text" value="180" name="height" id="height" readonly>
+  <input type="text" value="180" name="height" id="height" readonly disabled>
 
   <label for="skin">Diseño</label>
-  <select name="skin" id="skin">
+  <select name="skin" id="skin" disabled>
     <option value="seven" selected>Seven</option>
     <option value="six">Six</option>
     <!-- etc... -->
   </select>
 
-  <label for="embeddercode">Código</label>
+  <label for="embeddercode" disabled>Código</label>
   <textarea data-videoembedgenerator-target name="embeddercode" readonly></textarea>
 </form>
 ```
@@ -187,7 +190,7 @@ Si no se quiere ofrecer esta opción al usuario se deben reemplazar el combo por
 
 La forma más simple de hacer funcionar todo esto es aplicarle al formulario del generador el atributo `data-videoembedgenerator` y al elemenento que muestra el código el atributo `data-videoembedgenerator-target`.
 
-Ejemplo: 
+Ejemplo:
 
 ```html
 <form data-videoembedgenerator>

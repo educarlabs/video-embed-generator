@@ -18,11 +18,13 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
     it("debe inicializarse correctamente si se usa el marcado por defecto", function() {
 
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
 
         VideoEmbedGenerator.init();
 
         expect($textarea).not.toHaveValue('');
         expect($textarea).toHaveValue(defaultEmbedCode);
+        expect($textarea).not.toBeDisabled();
 
     });
 
@@ -33,6 +35,7 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
         $textarea.removeAttr('data-videoembedgenerator-target').attr('name', 'my-embeddercode');
 
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
 
         VideoEmbedGenerator.init({
             formSelector  : '#my-generator',
@@ -40,6 +43,7 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
         });
 
         expect($textarea).toHaveValue(defaultEmbedCode);
+        expect($textarea).not.toBeDisabled();
 
     });
 
@@ -51,6 +55,7 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
 
         VideoEmbedGenerator.init();
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
 
         VideoEmbedGenerator.init({
             formSelector  : '#my-generator',
@@ -58,6 +63,7 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
         });
 
         expect($textarea).toHaveValue('');
+        expect($textarea).toBeDisabled();
 
     });
 
@@ -81,14 +87,34 @@ describe("Al intentar inicializar el generador de códigos de embebido", functio
             VideoEmbedGenerator.init();
 
             expect($textarea).toHaveValue('');
+            expect($textarea).toBeDisabled();
 
             $el.appendTo($form);
 
             VideoEmbedGenerator.init();
 
             expect($textarea).toHaveValue(defaultEmbedCode);
+            expect($textarea).not.toBeDisabled();
 
             VideoEmbedGenerator.kill();
+        });
+
+    });
+
+
+    it("se deben activar todos los campos que estaban desactivados", function() {
+
+        var fields = ['rec_id', 'referente', 'baseurl', 'cc', 'width', 'height',
+                      'autostart', 'autostop', 'start', 'stop', 'info', 'controls', 'skin'];
+
+        $.each(fields, function(index, value){
+            expect($('[name="' + value + '"]')).toBeDisabled();
+        });
+
+        VideoEmbedGenerator.init();
+
+        $.each(fields, function(index, value){
+            expect($('[name="' + value + '"]')).not.toBeDisabled();
         });
 
     });

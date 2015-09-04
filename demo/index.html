@@ -85,7 +85,7 @@
                 <div class="form-group">
                   <p class="checkbox">
                     <label for="verhidden">
-                      <input type="checkbox" id="verhidden" name="verhidden">Ver controles con <code>type="hidden"</code>
+                      <input type="checkbox" id="verhidden" name="verhidden" disabled>Ver controles con <code>type="hidden"</code>
                     </label>
                   </p>
                 </div>
@@ -95,19 +95,19 @@
                     <div class="col-sm-4">
                       <p class="form-group">
                         <label for="dimensiones">URL base</label>
-                        <input class="form-control" type="text" name="baseurl" value="http://cdn.educ.ar/embed/">
+                        <input class="form-control" type="text" name="baseurl" value="http://cdn.educ.ar/embed/" disabled>
                       </p>
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label for="width">ID del recurso</label>
-                        <input class="form-control" type="text" name="rec_id" value="12345">
+                        <input class="form-control" type="text" name="rec_id" value="12345" disabled>
                       </div>
                     </div>
                     <div class="col-sm-4">
                       <div class="form-group">
                         <label for="height">Referente</label>
-                        <select class="form-control" name="referente" id="referente">
+                        <select class="form-control" name="referente" id="referente" disabled>
                           <option value="educar" selected>Educ.ar</option>
                           <option value="encuentro">Encuentro</option>
                           <option value="pakapaka">Pakapaka</option>
@@ -122,7 +122,7 @@
                 <div class="form-group">
                   <p class="checkbox">
                     <label for="info">
-                      <input type="checkbox" id="info" name="info" checked>
+                      <input type="checkbox" id="info" name="info" checked disabled>
                       Mostrar título y descripción del video
                     </label>
                   </p>
@@ -131,7 +131,7 @@
                 <div class="form-group">
                   <p class="checkbox">
                     <label for="controls">
-                      <input type="checkbox" id="controls" name="controls" checked>
+                      <input type="checkbox" id="controls" name="controls" checked disabled>
                       Mostrar controles del reproductor
                     </label>
                   </p>
@@ -140,7 +140,7 @@
                 <div class="form-group">
                   <p class="checkbox">
                     <label for="cc">
-                      <input type="checkbox" id="cc" name="cc">
+                      <input type="checkbox" id="cc" name="cc" disabled>
                       Mostrar subtítulos por defecto
                     </label>
                   </p>
@@ -153,14 +153,14 @@
                         <div class="form-group">
                           <p class="checkbox">
                             <label for="autostart">
-                              <input type="checkbox" id="autostart" name="autostart">
+                              <input type="checkbox" id="autostart" name="autostart" disabled>
                               Iniciar automáticamente
                             </label>
                           </p>
                         </div>
                         <div class="form-group">
                           <span for="start">a los</span>
-                          <input class="form-control input-sm" type="text" value="" name="start" id="start" size="1" readonly> segundos
+                          <input class="form-control input-sm" type="text" value="" name="start" id="start" size="1" readonly disabled> segundos
                         </div>
                       </div>
                     </div>
@@ -170,14 +170,14 @@
                         <div class="form-group">
                           <p class="checkbox">
                             <label for="autostop">
-                              <input type="checkbox" id="autostop" name="autostop">
+                              <input type="checkbox" id="autostop" name="autostop" disabled>
                               Detener automáticamente
                             </label>
                           </p>
                         </div>
                         <div class="form-group">
                           <span for="stop">a los</span>
-                          <input class="form-control input-sm" type="text" value="" name="stop" id="stop" size="1" readonly> segundos
+                          <input class="form-control input-sm" type="text" value="" name="stop" id="stop" size="1" readonly disabled> segundos
                         </div>
                       </div>
                     </div>
@@ -188,7 +188,7 @@
                   <div class="col-sm-4">
                     <p class="form-group">
                       <label for="dimensiones">Dimensiones</label>
-                      <select class="form-control" name="dimensiones" id="dimensiones">
+                      <select class="form-control" name="dimensiones" id="dimensiones" disabled>
                         <option value="w320h180" selected>320 x 180</option>
                         <option value="w480h270">480 x 270</option>
                         <option value="custom">Personalizado</option>
@@ -199,13 +199,13 @@
                   <div class="col-sm-2 col-xs-6">
                     <div class="form-group">
                       <label for="width">Ancho</label>
-                      <input class="form-control" type="text" value="320" name="width" id="width" size="3" readonly>
+                      <input class="form-control" type="text" value="320" name="width" id="width" size="3" readonly disabled>
                     </div>
                   </div>
                   <div class="col-sm-2 col-xs-6">
                     <div class="form-group">
                       <label for="height">Alto</label>
-                      <input class="form-control" type="text" value="180" name="height" id="height" size="3" readonly>
+                      <input class="form-control" type="text" value="180" name="height" id="height" size="3" readonly disabled>
                     </div>
                   </div>
                 </div>
@@ -214,7 +214,7 @@
                   <div class="col-sm-4">
                     <p class="form-group">
                       <label for="skin">Diseño</label>
-                      <select class="form-control" name="skin" id="skin">
+                      <select class="form-control" name="skin" id="skin" disabled>
                         <option value="seven" selected>Seven</option>
                         <option value="six">Six</option>
                         <option value="five">Five</option>
@@ -229,7 +229,7 @@
                 </div>
 
                 <p class="form-group">
-                  <textarea class="form-control" id="generator-target" name="embeddercode" readonly rows="5"></textarea>
+                  <textarea class="form-control" id="generator-target" name="embeddercode" readonly rows="5" disabled></textarea>
                 </p>
               </form>
               <p class="helptext"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Si no se quiere ofrecer al usuario alguna de estas opciones de debe implementar ese campo como un <code>&lt;input type="hidden"&gt;</code> con el valor fijo que se quiera.</p>
