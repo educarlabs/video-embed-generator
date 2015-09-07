@@ -3,7 +3,7 @@ Generador de códigos de embebido
 
 Funcionalidad client-side para generar de forma interactiva códigos de video embebido compatibles con el servicio de la CDN de educ.ar.
 
-#### [Ver demo](http://nrlp.educ.ar/video-embed-generator/demo/)
+#### [Ver demo](http://educarlabs.github.io/video-embed-generator/)
 
 ---
 
