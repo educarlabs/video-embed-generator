@@ -134,20 +134,20 @@
 
       case "autostart":
         form.elements.start.readOnly = !changedElement.checked;
-        form.elements.start.value    =  changedElement.checked ? 0 : null;
+        form.elements.start.value    =  changedElement.checked ? 0 : "";
         break;
 
       case "autostop":
         form.elements.stop.readOnly = !changedElement.checked;
-        form.elements.stop.value    =  changedElement.checked ? +form.elements.start.value + 1 : null;
+        form.elements.stop.value    =  changedElement.checked ? +form.elements.start.value + 1 : "";
         break;
 
       case "dimensiones":
         switch(form.elements.dimensiones.value) {
 
           case "none":
-            form.elements.width.value     = null;
-            form.elements.height.value    = null;
+            form.elements.width.value     = "";
+            form.elements.height.value    = "";
             form.elements.width.readOnly  = true;
             form.elements.height.readOnly = true;
             break;
@@ -164,8 +164,8 @@
             form.elements.height.readOnly = true;
 
             var dimsArr = form.elements.dimensiones.value.match(widthHeightRegex);
-            form.elements.width.value  = dimsArr ? dimsArr[1] : null;
-            form.elements.height.value = dimsArr ? dimsArr[2] : null;
+            form.elements.width.value  = dimsArr ? dimsArr[1] : "";
+            form.elements.height.value = dimsArr ? dimsArr[2] : "";
         }
     }
   }
