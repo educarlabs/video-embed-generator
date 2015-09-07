@@ -6,7 +6,10 @@ describe("El control 'Iniciar automáticamente'", function() {
     var $form,
         $textarea,
         $startControl,
-        $autostartControl;
+        $autostartControl,
+        changeEvent = document.createEvent('Event');
+
+    changeEvent.initEvent('change', true, true);
 
 
     beforeEach(function () {
@@ -51,7 +54,7 @@ describe("El control 'Iniciar automáticamente'", function() {
         }
 
         $startControl.val("10");
-        $startControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $startControl[0].dispatchEvent(changeEvent);
 
         expect($textarea.val()).toMatch(/&start=10/);
 

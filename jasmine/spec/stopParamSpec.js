@@ -7,7 +7,10 @@ describe("El control 'Detener automáticamente'", function() {
         $textarea,
         $stopControl,
         $startControl,
-        $autostopControl;
+        $autostopControl,
+        changeEvent = document.createEvent('Event');
+
+    changeEvent.initEvent('change', true, true);
 
 
     beforeEach(function () {
@@ -41,7 +44,7 @@ describe("El control 'Detener automáticamente'", function() {
         }
 
         $stopControl.val("10");
-        $stopControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $stopControl[0].dispatchEvent(changeEvent);
 
         expect($textarea.val()).toMatch(/&stop=10/);
 

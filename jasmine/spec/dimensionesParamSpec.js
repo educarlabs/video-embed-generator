@@ -7,7 +7,10 @@ describe("El control 'Dimensiones'", function() {
         $textarea,
         $dimensionesControl,
         widthHeightRegex = /w(\d+)h(\d+)/,
+        changeEvent = document.createEvent('Event'),
         rwdCodeRegex = /^<div style="position: relative; height: 0; padding-top: 56.248%">(.*)<iframe (.*)style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"(.*)><\/iframe>(.*)<\/div>$/;
+
+    changeEvent.initEvent('change', true, true);
 
 
     beforeEach(function () {
@@ -28,8 +31,8 @@ describe("El control 'Dimensiones'", function() {
         expect($heightControl.prop('readonly')).toBe(true);
 
         $dimensionesControl.val('custom');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));  // en los selects hay que forzar el evento 'change'
-                                                                                     // pero funciona esto en todos los browsers?
+        $dimensionesControl[0].dispatchEvent(changeEvent);
+
         expect($widthControl.prop('readonly')).toBe(false);
         expect($heightControl.prop('readonly')).toBe(false);
 
@@ -43,13 +46,13 @@ describe("El control 'Dimensiones'", function() {
         $.each(sizes, function(index, value){
 
             $dimensionesControl.val('custom');
-            $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+            $dimensionesControl[0].dispatchEvent(changeEvent);
 
             expect($widthControl.prop('readonly')).toBe(false);
             expect($heightControl.prop('readonly')).toBe(false);
 
             $dimensionesControl.val(value);
-            $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+            $dimensionesControl[0].dispatchEvent(changeEvent);
 
             expect($widthControl.prop('readonly')).toBe(true);
             expect($heightControl.prop('readonly')).toBe(true);
@@ -72,7 +75,7 @@ describe("El control 'Dimensiones'", function() {
         $.each(sizes, function(index, value){
 
             $dimensionesControl.val(value);
-            $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+            $dimensionesControl[0].dispatchEvent(changeEvent);
 
             dimsArr = value.match(widthHeightRegex);
 
@@ -98,7 +101,7 @@ describe("El control 'Dimensiones'", function() {
         $.each(sizes, function(index, value){
 
             $dimensionesControl.val(value);
-            $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+            $dimensionesControl[0].dispatchEvent(changeEvent);
 
             dimsArr = value.match(widthHeightRegex);
 
@@ -116,10 +119,10 @@ describe("El control 'Dimensiones'", function() {
         expect($heightControl.val()).toBe("180");
 
         $dimensionesControl.val('none');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $dimensionesControl[0].dispatchEvent(changeEvent);
 
-        expect($widthControl.val()).toBe("");
-        expect($heightControl.val()).toBe("");
+        expect($widthControl[0].value).toBe("");
+        expect($heightControl[0].value).toBe("");
 
     });
 
@@ -130,14 +133,14 @@ describe("El control 'Dimensiones'", function() {
         expect($textarea.val()).toMatch(/height="180"/);
 
         $dimensionesControl.val('custom');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $dimensionesControl[0].dispatchEvent(changeEvent);
 
         $widthControl.val("500");
-        $widthControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $widthControl[0].dispatchEvent(changeEvent);
         expect($textarea.val()).toMatch(/width="500"/);
 
         $heightControl.val("500");
-        $heightControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $heightControl[0].dispatchEvent(changeEvent);
         expect($textarea.val()).toMatch(/height="500"/);
 
     });
@@ -149,7 +152,7 @@ describe("El control 'Dimensiones'", function() {
         expect($textarea.val()).toMatch(/height="180"/);
 
         $dimensionesControl.val('none');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $dimensionesControl[0].dispatchEvent(changeEvent);
 
         expect($textarea.val()).not.toMatch(/width="/);
         expect($textarea.val()).not.toMatch(/height="/);
@@ -162,12 +165,12 @@ describe("El control 'Dimensiones'", function() {
         expect($textarea.val()).not.toMatch(rwdCodeRegex);
 
         $dimensionesControl.val('none');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $dimensionesControl[0].dispatchEvent(changeEvent);
 
         expect($textarea.val()).toMatch(rwdCodeRegex);
 
         $dimensionesControl.val('custom');
-        $dimensionesControl[0].dispatchEvent(new Event('change', {bubbles: true}));
+        $dimensionesControl[0].dispatchEvent(changeEvent);
 
         expect($textarea.val()).not.toMatch(rwdCodeRegex);
 
