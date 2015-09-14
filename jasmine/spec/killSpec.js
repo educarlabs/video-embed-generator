@@ -5,7 +5,7 @@ describe("Al intentar destruir el generador de códigos de embebido", function()
 
     var $form,
         $textarea,
-        defaultEmbedCode = '<iframe frameborder="0"  allowfullscreen src="http://cdn.educ.ar/embed/?id=12345" width="320" height="180"></iframe>';
+        defaultEmbedCode = '<iframe frameborder="0"  allowfullscreen src="http://cdn.educ.ar/video/?id=12345" width="320" height="180"></iframe>';
 
 
     beforeEach(function () {

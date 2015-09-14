@@ -55,7 +55,7 @@ Se sugiere que en su estado original todos los campos tengan el atributo `disabl
 <form data-videoembedgenerator>
 
   <!-- Campos ocultos con datos no editables por el usuario -->
-  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/embed/" disabled>
+  <input type="hidden" name="baseurl"   value="http://cdn.educ.ar/video/" disabled>
   <input type="hidden" name="rec_id"    value="12345" disabled>
   <input type="hidden" name="referente" value="educar" disabled>
 
